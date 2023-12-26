@@ -93,13 +93,19 @@ ggplotly(g1)
 
 #####################################
 g1 <- dfredp2 %>%
-  filter(date >= "2019-01-01") %>%
+  filter(date >= "2022-01-01") %>%
   ggplot(aes(x = date, y = value)) +
-  geom_line(color = 'blue') +
+  geom_line(color = 'blue',size=1) +
   geom_smooth(se = FALSE, color = 'orangered', linetype = 'dashed') +
   facet_wrap(~Variable, scales = "free_y") +
-  labs(title = "Economic Indicator",x='Date (months)',y='Percent')+
-  theme_classic()
+  labs(title = "Short-term Effects of FRB Policy",x='Date (months)',y='Percent')+
+  theme_classic()+
+  theme(
+    axis.title = element_text(size = 13,color = 'black'),  # Modify axis title font size
+    axis.text = element_text(size = 10,color = 'black'),   
+    strip.text = element_text(size = 13,color='black'),  # Modify facet title font size
+    plot.title = element_text(size = 18,color = 'black')   # Modify plot title font size
+  )
 
 # Convert ggplot to plotly
 g1_plotly <- ggplotly(g1)
@@ -113,13 +119,14 @@ g1_plotly <- g1_plotly %>%
     list(
       text = "Source: by Raulin Cadet, with data provided by FRED.",
       showarrow = FALSE,
-      x = 0.2,
-      y = -0.2,
+      x = 0.3,
+      y = -0.22,
       xref = "paper",
       yref = "paper",
       xanchor = "center",
+      color='black',
       #yanchor = "top",
-      font = list(size = 12)
+      font = list(size = 16)
     )
   ))
 
@@ -128,45 +135,3 @@ g1_plotly
 
 #######################333
 #######################################
-drec<-fredr(
-  series_id = 'USREC',
-  observation_start = as.Date("1990-01-01"),
-  observation_end = Sys.Date()
-)
-drec<-drec%>%rename(recession=value,Date=date) # change variable name from 'value' to 'recession'
-dada<-cbind.data.frame(dfredp2,drec%>%select(Date,recession))  # merge data frame
-
-g1 <- dada %>%
-  filter(date >= "2022-01-01") %>%
-  ggplot(aes(x = date, y = value)) +
-  geom_line(color = 'blue') +
-  geom_smooth(se = FALSE, color = 'orangered', linetype = 'dashed') +
-  geom_vline(aes(xintercept = as.Date(Date)), linetype = 'dotted', color = 'red')+
- 
-  
-  facet_wrap(~Variable, scales = "free_y") +
-  labs(title = "Economic Indicator",x='Date (months)',y='Percent')
-
-# Convert ggplot to plotly
-g1_plotly <- ggplotly(g1)
-
-g1_plotly <- g1_plotly %>%
-  layout(margin = list(b = 100))  # Adjust the bottom margin as needed
-
-# Add text below the graphic
-g1_plotly <- g1_plotly %>%
-  layout(annotations = list(
-    list(
-      text = "Source: by Raulin Cadet, with data provided by FRED.",
-      showarrow = FALSE,
-      x = 0.2,
-      y = -0.2,
-      xref = "paper",
-      yref = "paper",
-      xanchor = "center",
-      #yanchor = "top",
-      font = list(size = 12)
-    )
-  ))
-
-g1_plotly
