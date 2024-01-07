@@ -13,5 +13,10 @@ df<-data.frame(variable,percentages)
 
 df%>%
   ggplot(aes(x=reorder(variable,percentages),y=percentages))+
-  geom_bar(stat = 'identity')+
-  coord_flip()
+  geom_bar(stat = 'identity',fill='orangered')+
+  #geom_text(label=percentages,hjust=-0.09)+
+  coord_flip()+
+  xlab('Actions proposed')+ylab("Percentages")+
+  ggtitle("Key actions for Haiti's prosperity, proposed by municipal sections")+
+  labs(caption="Source:Realized by Raulin Cadet, with data provided by Université Quisqueya (uniQ) and \n the Inter-American Development Bank (IDB) in a graphic of the project Trase Chimen. \nData provided by the project may be viewed by hovering over the graphics \nof its dashboard: https://uniq.edu.ht/trase-chimen/ ")+
+  theme_minimal()

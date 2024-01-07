@@ -42,8 +42,8 @@ ffreds<-function(symbols,
 
 fredM_prices=c('FEDFUNDS',    # Federal Funds Effective Rate - NSA - Monthly
                'CPIAUCNS',    # Consumer Price Index for All Urban Consumers: All Items in U.S. City Average - NSA - Monthly
-                'UNRATE'      # Unemployment rate - SA - Monthly
-              
+               'UNRATE'      # Unemployment rate - SA - Monthly
+               
 )
 
 
@@ -131,6 +131,9 @@ g1_plotly <- g1_plotly %>%
   ))
 
 g1_plotly
+library(svglite)
+ggsave("~US_inflation/Fed_inflationTarget.svg", plot =g1_plotly, device = "svg")
+
 
 
 #######################333
