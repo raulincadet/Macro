@@ -4,7 +4,7 @@ library(plotly)
 library(fredr)
 
 # set my API key
-fredr_set_key('3f3ea2b88220ca8b204bdbb8a5ced854')
+fredr_set_key('')
 
 
 # creating a function to retrieve data related to several variables
