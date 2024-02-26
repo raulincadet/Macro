@@ -44,20 +44,19 @@ label_position <- df %>%
 df%>%
   ggplot(aes(x=reorder(Hours,Persons),y=Persons,fill=Year))+
   geom_bar(stat="identity",position = "dodge")+
-labs(title = "Persons by Average Telework Hours",
+labs(title = "Persons by Average Weekly Telework Hours",
        caption="Source: Raulin L. Cadet, with data from U.S. Bureau of Labor Statistics.",
      x="",y="Thousands of Persons"
      ) +
-  
+  theme_minimal()+
   theme(
-    axis.text =element_text(),  # Remove axis text
-    axis.title = element_blank(),  # Remove axis title
-    panel.grid = element_blank(),  # Remove grid lines
-    panel.border = element_blank(),  # Remove panel border
-    plot.title = element_text(hjust = 0.5),  # Center the plot title
-    plot.caption = element_text(margin = margin(t = 20))
-    ) +
-  scale_fill_brewer(palette = "Paired")+  # Change colors
-theme_minimal()
- 
+    axis.title = element_text(size = 13,color = 'black'),  # Modify axis title font size
+    axis.text = element_text(size = 13,color = 'black'),   
+    strip.text = element_text(size = 13,color='black'),  # Modify facet title font size
+    plot.title = element_text(size = 18,color = 'black'),   # Modify plot title font size
+    legend.position = "top"
+  )+
+  scale_fill_brewer(palette = "Paired")  # Change colors
+
+ df%>%group_by(Year)%>%summarise(sum(Persons))
   
