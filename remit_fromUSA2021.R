@@ -19,7 +19,7 @@ g2<-df_filus%>%arrange(remit)%>%tail(10)%>%
   ggplot(aes(x=reorder(Country,remit),y=remit))+
   geom_bar(stat='identity',fill='orangered',width = 0.7)+
   geom_text(aes(label = round(remit,2)), hjust = -0.1, size = 3) +  # Add labels
-  ggtitle("Top Countries in Received Remittances Estimated for 2023")+xlab('Countries')+ylab("Millions USD")+
+  ggtitle("Top Countries Receiving Remittances from the USA in 2021")+xlab('Countries')+ylab("Millions USD")+
   coord_flip()+
   theme_classic()+
   theme(
@@ -30,7 +30,10 @@ g2<-df_filus%>%arrange(remit)%>%tail(10)%>%
     strip.text = element_text(size = 13,color='black'),  # Modify facet title font size
     plot.title = element_text(size = 18,color = 'black')   # Modify plot title font size
   )
-g2+labs(caption = "Source: By Raulin Cadet, with data from the World Bank-KNOMAD, December 2023.")+
+g2+labs(caption = "Source: By Raulin Cadet, with data from KNOMAD/World Bank Bilateral Remittance Matrix 2021, December 2022.")+
   theme(plot.caption = element_text(size = 11, color = 'black'))  # to adjust font size
 
 # https://www.oecd-ilibrary.org/sites/4e637bf0-en/index.html?itemId=/content/component/4e637bf0-e
+
+
+#This leads me to believe that India has other significant sources of transfers to be in the first position compared to Mexico.
