@@ -32,4 +32,4 @@ g2<-d23%>%
 g2+labs(caption = "Source: By Raulin Cadet, with data from the World Bank-KNOMAD, December 2023.")+
   theme(plot.caption = element_text(size = 11, color = 'black'))  # to adjust font size
 
-# https://www.oecd-ilibrary.org/sites/4e637bf0-en/index.html?itemId=/content/component/4e637bf0-en
+# https://www.oecd-ilibrary.org/sites/4e637bf0-en/index.html?itemId=/content/component/4e637bf0-e
